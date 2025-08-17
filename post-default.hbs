@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    {{> meta}}
+    
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
+    
+    {{ghost_head}}
+</head>
+<body>
+    <main class="{{#if @member}}blog{{else}}blog{{/if}}">
+        {{{body}}}
+    </main>
+    
+    <script src="https://tinylytics.app/embed/hxbdm2ZP9TkkEHRpxJd8.js" defer></script>
+    {{ghost_foot}}
+</body>
+</html>

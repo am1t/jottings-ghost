@@ -169,13 +169,6 @@ npx gscan jottings-ghost
 
 MIT License - see LICENSE file for details.
 
-## Support
-
-For issues and questions:
-- Create an issue on GitHub
-- Contact: amit@amitgawande.com
-
 ## Credits
 
-Original Kirby theme by Amit Gawande
-Port to Ghost by [Your Name] 
+Original Kirby theme by Amit Gawande, [ported via Vibe Coding](https://www.amitgawande.com/blog/2025/porting-theme-with-vibe-coding/) with Claude.

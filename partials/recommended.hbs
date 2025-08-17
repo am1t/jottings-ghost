@@ -1,0 +1,11 @@
+<h3>Start Here</h3>
+<div class="preco">
+    {{#get "posts" filter="featured:true" limit="20" include="tags,authors" order="published_at desc"}}
+        {{#foreach posts}}
+            <div class="row">
+                <div class="tcol">{{title}}</div>
+                <div class="lcol"><a href="{{url}}">{{date format="YYYY"}}</a></div>
+            </div>
+        {{/foreach}}
+    {{/get}}
+</div> 

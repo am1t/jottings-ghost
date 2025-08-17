@@ -1,0 +1,30 @@
+{{!< default}}
+
+{{#tag}}
+<div class="content">
+    <header class="tag-header">
+        <h1 class="tag-title">{{name}}</h1>
+        {{#if description}}
+            <p class="tag-description">{{description}}</p>
+        {{/if}}
+    </header>
+
+    <section class="tag-posts">
+        {{#get "posts" filter="tag:{{slug}}" include="tags,authors" limit="20"}}
+            {{#if posts}}
+                <div class="posts-grid">
+                    {{#foreach posts}}
+                        {{> post-excerpt}}
+                    {{/foreach}}
+                </div>
+                
+                {{pagination}}
+            {{else}}
+                <div class="no-posts">
+                    <p>No posts found with this tag.</p>
+                </div>
+            {{/if}}
+        {{/get}}
+    </section>
+</div>
+{{/tag}} 

@@ -1,0 +1,72 @@
+{{!< default}}
+
+<div class="content">
+    <header class="h1">
+        <h1 class="notes-title">Notes</h1>
+    </header>
+
+    <section class="content notes" id="notes-container">
+        {{#get "posts" filter="tag:note" include="tags,authors" limit="50" order="published_at desc"}}
+            {{#if posts}}
+                {{#foreach posts}}
+                    <div class="note" data-date="{{date format="YYYY-MM-DD"}}">
+                        <div class="note-content">
+                            {{excerpt words="100"}}...
+                            <a class="note-link" href="{{url}}" title="{{title}}">#</a>
+                        </div>
+                        <time class="note-date" datetime="{{date format="YYYY-MM-DD"}}">
+                            {{date format="dddd, MMMM j, YYYY"}}
+                        </time>
+                    </div>
+                {{/foreach}}
+            {{else}}
+                <p>No notes found.</p>
+            {{/if}}
+        {{/get}}
+    </section>
+
+    <script>
+        // Group notes by date
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('notes-container');
+            if (!container) return;
+            
+            const notes = container.querySelectorAll('.note');
+            const groupedNotes = {};
+            
+            // Group notes by date
+            notes.forEach(note => {
+                const date = note.getAttribute('data-date');
+                if (!groupedNotes[date]) {
+                    groupedNotes[date] = [];
+                }
+                groupedNotes[date].push(note);
+            });
+            
+            // Clear container
+            container.innerHTML = '';
+            
+            // Create grouped structure
+            Object.keys(groupedNotes).sort().reverse().forEach(date => {
+                const notesForDate = groupedNotes[date];
+                const firstNote = notesForDate[0];
+                const dateText = firstNote.querySelector('.note-date').textContent;
+                
+                // Create group header
+                const groupHeader = document.createElement('div');
+                groupHeader.className = 'notes-group-header';
+                groupHeader.textContent = dateText;
+                container.appendChild(groupHeader);
+                
+                // Add notes for this date
+                notesForDate.forEach(note => {
+                    const noteContent = note.querySelector('.note-content');
+                    const noteDiv = document.createElement('div');
+                    noteDiv.className = 'note';
+                    noteDiv.innerHTML = noteContent.innerHTML;
+                    container.appendChild(noteDiv);
+                });
+            });
+        });
+    </script>
+</div> 

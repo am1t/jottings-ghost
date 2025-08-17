@@ -1,0 +1,30 @@
+{{!-- Meta tags partial for proper Open Graph handling --}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>{{meta_title}}</title>
+<meta name="fediverse:creator" content="amit@social.lol" />
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="{{meta_title}}">
+<meta property="og:url" content="{{url absolute="true"}}">
+<meta property="og:type" content="website">
+<meta property="og:image:type" content="image/png">
+
+{{!-- Handle feature images for different contexts --}}
+<meta property="og:image" content="{{@site.url}}/assets/images/home.png">
+
+<link rel="shortcut icon" type="image/x-icon" href="{{asset "icons/favicon.ico"}}">
+<link rel="apple-touch-icon" type="image/x-icon" href="{{asset "icons/favicon.ico"}}">
+
+<link rel="me" href="https://social.lol/@amit" />
+<link rel="me" href="https://github.com/am1t">
+<link rel="me" href="https://micro.blog/amit" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+
+<link rel="alternate" type="application/rss+xml" href="{{@site.url}}/rss/" title="{{@site.title}} RSS Feed">
+<link rel="alternate" type="application/json" href="{{@site.url}}/rss/" title="{{@site.title}} JSON Feed"> 

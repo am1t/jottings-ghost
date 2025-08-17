@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square 101 | {{@site.title}}</title>
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset "icons/squareone.ico"}}">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{asset "icons/squareone.ico"}}">
+
+    <link rel="me" href="https://social.lol/@amit" />
+    <link rel="me" href="https://github.com/am1t">
+    <link rel="me" href="https://micro.blog/amit" />
+</head>
+<body>
+    <div class="container">
+        <div class="square-card">
+            <img src="{{asset "images/squareone.png"}}" alt="Square 101 Icon" class="square-icon">
+            
+            <h1 class="square-heading"><a href="{{@site.url}}">Square 101</a></h1>
+            <div class="square-subheading">Kickstarting Curiosity, One Topic at a Time.</div>
+            
+            <div class="square-intro">
+                <p>A short, sharp introduction (<strong>101</strong>) to words you hear often — but no one ever explains. Delivered on <strong>1st & 15th</strong> of every month in 500 words.
+                    A perfect way to fill in the gaps, <span style="font-style: italic;">without it feeling like homework.</span>
+                </p>
+                <p>You can read more about the newsletter <a href="{{@site.url}}/blog/introducing-square-101">here on my blog</a>.</p>
+            </div>
+            
+            <iframe id="beehiiv-iframe" src="https://embeds.beehiiv.com/e989db60-b6d7-4761-9cab-c23828e29e9a?slim=true" 
+                data-test-id="beehiiv-embed" 
+                height="52" 
+                frameborder="0" 
+                scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent;border-radius: 10px;margin: 2rem auto 0 auto;width: 100%;">
+            </iframe>
+            <div id="form-footer" class="form-footer">
+                No spam. No hype. Just clarity. You can unsubscribe at any time.
+            </div>
+        </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.getElementById('beehiiv-iframe');
+            const footer = document.getElementById('form-footer');
+            
+            // Show footer after iframe loads
+            iframe.addEventListener('load', function() {
+                footer.classList.add('visible');
+            });
+            
+            // Fallback in case iframe load event doesn't fire
+            setTimeout(function() {
+                footer.classList.add('visible');
+            }, 10000);
+        });
+        </script>
+
+        {{#get "posts" filter="tag:101" include="tags,authors" limit="20" order="published_at desc"}}
+            {{#if posts}}
+                <h2 style="color:#f9bf77 !important;text-align: center; margin: 5rem 0 0px; color: var(--text);">Previous Issues </h2>
+                <p style="color:#ddd !important;text-align: center; margin: 1rem 0 1rem; color: var(--text);">
+                    The newsletter is powered by <a href="https://beehiiv.com">beehiiv</a> — you can subscribe for free above, and cancel anytime. You can find the archive down below.
+                </p>
+            {{/if}}
+        {{/get}}
+        
+        <div class="post-cards">
+            {{#get "posts" filter="tag:101" include="tags,authors" limit="20" order="published_at desc"}}
+                {{#foreach posts}}
+                    <a href="{{url}}" class="post-card">
+                        <div class="post-card-title">{{title}}</div>
+                        <div class="post-card-date">{{date format="M Y"}}</div>
+                        <div class="post-card-summary">{{excerpt words="20"}}</div>
+                    </a>
+                {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
+    
+    <div class="fade"></div>
+    <footer>
+        <nav class="nav">
+            <div class="links">
+                <a href="{{@site.url}}"><img src="{{asset "icons/home.svg"}}" width="24" height="24" alt="Home" target="_blank"/></a>
+                <a href="https://www.buymeacoffee.com/amitgawande"><img src="{{asset "icons/buymeacoffee.svg"}}" width="24" height="24" alt="Buy Me A Coffee"/></a>
+                <a href="{{@site.url}}/rss/"><img src="{{asset "icons/rss.svg"}}" width="24" height="24" alt="RSS" target="_blank"/></a>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html> 

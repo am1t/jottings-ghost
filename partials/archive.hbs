@@ -1,0 +1,16 @@
+<h3>Recent Posts</h3>
+
+{{#get "posts" limit="5" include="tags,authors" order="published_at desc"}}
+    {{#if posts}}
+        <div class="preco">
+            {{#foreach posts}}
+                <div class="row">
+                    <div class="tcol">{{title}}</div>
+                    <div class="lcol"><a href="{{url}}">{{date format="MMMM D"}}</a></div>
+                </div>
+            {{/foreach}}
+        </div>
+    {{else}}
+        <p>No posts found.</p>
+    {{/if}}
+{{/get}} 

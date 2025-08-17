@@ -1,0 +1,26 @@
+<div class="content">
+    <header class="h1">
+        <h1 class="author-title">{{primary_author.name}}</h1>
+        {{#if primary_author.bio}}
+            <p class="author-bio">{{primary_author.bio}}</p>
+        {{/if}}
+    </header>
+
+    <section class="content">
+        {{#get "posts" filter="authors:{{primary_author.slug}}" include="tags,authors" limit="20"}}
+            {{#if posts}}
+                <ul class="post-list">
+                    {{#foreach posts}}
+                        <li class="post-list-item">
+                            {{> post-excerpt}}
+                        </li>
+                    {{/foreach}}
+                </ul>
+                
+                {{pagination}}
+            {{else}}
+                <p>No posts found by this author.</p>
+            {{/if}}
+        {{/get}}
+    </section>
+</div> 

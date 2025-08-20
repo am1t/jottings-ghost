@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+    <channel>
+        <title>{{@site.title}}</title>
+        <description>{{@site.description}}</description>
+        <link>{{@site.url}}</link>
+        <image>
+            <url>{{@site.icon}}</url>
+            <title>{{@site.title}}</title>
+            <link>{{@site.url}}</link>
+        </image>
+        <lastBuildDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</lastBuildDate>
+        <language>{{@site.locale}}</language>
+        <atom:link href="{{@site.url}}/rss/" rel="self" type="application/rss+xml"/>
+        {{#get "posts" limit="20" include="tags,authors" order="published_at desc"}}
+            {{#foreach posts}}
+            <item>
+                <title>{{title}}</title>
+                <description><![CDATA[{{{excerpt}}}]]></description>
+                <link>{{url absolute="true"}}</link>
+                <guid isPermaLink="false">{{id}}</guid>
+                <category><![CDATA[{{#foreach tags}}{{name}}{{#unless @last}}, {{/unless}}{{/foreach}}]]></category>
+                <dc:creator><![CDATA[{{primary_author.name}}]]></dc:creator>
+                <pubDate>{{date format="ddd, DD MMM YYYY HH:mm:ss ZZ"}}</pubDate>
+                <content:encoded><![CDATA[{{{html}}}<br><br><a href="mailto:reply@amitgawande.com?subject=RE: {{title}}">Reply to this post</a>]]></content:encoded>
+            </item>
+        {{/foreach}}
+        {{/get}}
+    </channel>
+</rss>

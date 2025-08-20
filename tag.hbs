@@ -10,15 +10,13 @@
     </header>
 
     <section class="tag-posts">
-        {{#get "posts" filter="tag:{{slug}}" include="tags,authors" limit="20"}}
+        {{#get "posts" filter="tag:{{slug}}" include="tags,authors"}}
             {{#if posts}}
                 <div class="posts-grid">
                     {{#foreach posts}}
                         {{> post-excerpt}}
                     {{/foreach}}
                 </div>
-                
-                {{pagination}}
             {{else}}
                 <div class="no-posts">
                     <p>No posts found with this tag.</p>

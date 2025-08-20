@@ -861,6 +861,10 @@ ul.post-meta, ul.post-list {
     font-size: 0.9rem;
 }
 
+mark {
+    background-color: #fdffb6;
+}
+
 /* Post list styles */
 .post-list {
     list-style: none;
